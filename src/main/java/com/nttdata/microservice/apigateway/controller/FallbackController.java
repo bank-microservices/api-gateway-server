@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -23,7 +24,7 @@ public class FallbackController {
 
   @GetMapping("/clientService")
   public Mono<ResponseEntity<FallbackResponse>> clientServiceFallback() {
-    log.info("Returning fallback result for client-service! on port {}", port);
+    log.info("Returning fallback result get for client-service! on port {}", port);
     FallbackResponse fallback = FallbackResponse.builder()
         .fallbackMessage(String.format(message, "Client Service!"))
         .status(HttpStatus.SERVICE_UNAVAILABLE.value())
@@ -44,6 +45,16 @@ public class FallbackController {
   @GetMapping("/creditService")
   public Mono<ResponseEntity<FallbackResponse>> creditServiceFallback() {
     log.info("Returning fallback result for credit-service! on port {}", port);
+    FallbackResponse fallback = FallbackResponse.builder()
+        .fallbackMessage(String.format(message, "Credit Service!"))
+        .status(HttpStatus.SERVICE_UNAVAILABLE.value())
+        .build();
+    return Mono.just(fallback).map(ResponseEntity::ok);
+  }
+
+  @PostMapping("/creditService")
+  public Mono<ResponseEntity<FallbackResponse>> creditServiceFallbackPost() {
+    log.info("Returning fallback post result for credit-service! on port {}", port);
     FallbackResponse fallback = FallbackResponse.builder()
         .fallbackMessage(String.format(message, "Credit Service!"))
         .status(HttpStatus.SERVICE_UNAVAILABLE.value())
