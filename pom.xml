@@ -7,7 +7,7 @@
         <version>2.7.0</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.nttdata.microservice.apigateway</groupId>
+    <groupId>com.nttdata.microservice</groupId>
     <artifactId>api-gateway-server</artifactId>
     <version>1.0.0</version>
     <name>api-gateway-server</name>
@@ -16,7 +16,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <jib-maven-plugin.image>eclipse-temurin:11.0.15_10-jre-alpine</jib-maven-plugin.image>
-        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>  
+        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
     </properties>
     <dependencies>
         <dependency>
@@ -118,7 +118,7 @@
                     <container>
                         <entrypoint>
                             <shell>sh</shell>                            
-                            <arg>/entrypoint.sh</arg>
+                            <arg>entrypoint.sh</arg>
                         </entrypoint>
                         <environment>
                             <CONFIG_SERVER_URI>http://localhost:8888</CONFIG_SERVER_URI>
