@@ -9,12 +9,14 @@
     </parent>
     <groupId>com.nttdata.microservice.apigateway</groupId>
     <artifactId>api-gateway-server</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>api-gateway-server</name>
     <description>Project for Api Gateway Server</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <jib-maven-plugin.image>eclipse-temurin:11.0.15_10-jre-alpine</jib-maven-plugin.image>
+        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>  
     </properties>
     <dependencies>
         <dependency>
@@ -99,7 +101,13 @@
                 </dependencies>
                 <configuration>
                     <from>
-                        <image>eclipse-temurin:11-jre-focal</image>
+                        <image>${jib-maven-plugin.image}</image>
+                        <platforms>
+                            <platform>
+                                <architecture>${jib-maven-plugin.architecture}</architecture>
+                                <os>linux</os>
+                            </platform>
+                        </platforms>
                     </from>
                     <to>
                         <image>${project.artifactId}</image>
@@ -109,8 +117,7 @@
                     </to>
                     <container>
                         <entrypoint>
-                            <shell>bash</shell>
-                            <option>-c</option>
+                            <shell>sh</shell>                            
                             <arg>/entrypoint.sh</arg>
                         </entrypoint>
                         <environment>
