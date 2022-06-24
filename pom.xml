@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.nttdata.microservice</groupId>
     <artifactId>api-gateway-server</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>api-gateway-server</name>
     <description>Project for Api Gateway Server</description>
     <properties>
